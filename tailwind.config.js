@@ -11,9 +11,6 @@ export default {
         'secondary': '#10B981',
         'dark': '#1F2937'
       },
-/*       fontFamily: {
-        'mono': ['SFMono-Regular', 'Inter', 'system-ui'],
-      } */
     },
   },
   plugins: [],
