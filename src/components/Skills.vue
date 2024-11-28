@@ -36,7 +36,7 @@ const skills = [
     { name: 'JavaScript', icon: ['fab', 'js'], useFA: true },
     { name: 'CSS3', icon: ['fab', 'css3-alt'], useFA: true },
     { name: 'Vue.js', icon: ['fab', 'vuejs'], useFA: true },
-    { name: 'React', icon: ['fab', 'react'], useFA: true },
+    { name: 'React.js', icon: ['fab', 'react'], useFA: true },
     { name: 'Bootstrap', icon: ['fab', 'bootstrap'], useFA: true },
 ]
 </script>
