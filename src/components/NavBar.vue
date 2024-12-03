@@ -38,8 +38,8 @@
         </Transition>
     </nav>
     <button id="back-to-top" v-show="showBackToTop" @click="scrollToTop"
-        class="fixed bottom-6 right-6 bg-white text-primary p-4 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-200">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        class="fixed bottom-6 right-6 bg-white text-primary p-4 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 z-40">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
     </button>
@@ -102,6 +102,8 @@ nav {
 
 #back-to-top {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #back-to-top:hover {

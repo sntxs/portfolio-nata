@@ -1,16 +1,7 @@
 <template>
     <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden">
-        <!-- Círculos de fundo ajustados -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="floating-circle bg-primary/5 w-48 sm:w-64 h-48 sm:h-64 rounded-full absolute -top-20 -left-20">
-            </div>
-            <div
-                class="floating-circle bg-secondary/5 w-72 sm:w-96 h-72 sm:h-96 rounded-full absolute -bottom-32 -right-32">
-            </div>
-        </div>
-
         <div class="relative z-10 text-center">
-            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 heading-gradient">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold pb-4 mb-4 heading-gradient">
                 Natã Rodrigues
             </h1>
             <p class="text-lg sm:text-xl md:text-2xl text-secondary typewriter">
