@@ -8,11 +8,18 @@
                 Desenvolvedor Web
             </p>
             <div class="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                <a href="#contact" class="btn-primary w-full sm:w-auto">Entre em Contato</a>
+                <a @click.prevent="scrollToContact" href="#contact" class="btn-primary w-full sm:w-auto">Entre em Contato</a>
             </div>
         </div>
     </section>
 </template>
+
+<script setup>
+const scrollToContact = () => {
+    const contactSection = document.getElementById('contact')
+    contactSection.scrollIntoView({ behavior: 'smooth' })
+}
+</script>
 
 <style scoped>
 .btn-primary {

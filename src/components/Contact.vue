@@ -1,65 +1,69 @@
 <template>
     <section id="contact" class="section-padding">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 heading-gradient">
+        <div class="max-w-lg mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 heading-gradient">
                 Vamos Conversar?
             </h2>
-            <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
-                <!-- Informações de Contato -->
-                <div class="bg-primary p-6 sm:p-8 rounded-lg text-light order-2 md:order-1">
-                    <h3 class="text-xl sm:text-2xl font-bold mb-6">Informações de Contato</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-4">
-                            <MailIcon class="w-6 h-6" />
-                            <span>natanrodrigues649@gmail.com</span>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <MapPinIcon class="w-6 h-6" />
-                            <span>Mato Grosso do Sul, Brasil</span>
-                        </div>
+            
+            <form @submit.prevent="handleSubmit" class="bg-white p-5 rounded-lg shadow-sm">
+                <div class="space-y-3">
+                    <div>
+                        <input 
+                            v-model="form.name" 
+                            type="text" 
+                            placeholder="Nome"
+                            :class="{'border-red-500': errors.name}"
+                            class="w-full p-2.5 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" 
+                        />
+                        <p v-if="errors.name" class="text-red-500 text-sm mt-1">{{ errors.name }}</p>
                     </div>
-                    <div class="mt-6 sm:mt-8">
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/sntxs" target="_blank"
-                                class="bg-light/10 p-3 rounded-lg hover:bg-light/20 transition-colors">
-                                <GithubIcon class="w-5 h-5 sm:w-6 sm:h-6" />
-                            </a>
-                            <a href="https://www.linkedin.com/in/sntsrod00/" target="_blank"
-                                class="bg-light/10 p-3 rounded-lg hover:bg-light/20 transition-colors">
-                                <LinkedinIcon class="w-5 h-5 sm:w-6 sm:h-6" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Formulário -->
-                <form @submit.prevent="sendMessage" class="bg-white p-6 sm:p-8 rounded-lg shadow-sm order-1 md:order-2">
-                    <div class="space-y-4">
-                        <input v-model="name" type="text" placeholder="Nome"
-                            class="w-full p-3 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" />
-                        <input v-model="email" type="email" placeholder="Email"
-                            class="w-full p-3 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" />
-                        <textarea v-model="message" placeholder="Sua Mensagem" rows="4"
-                            class="w-full p-3 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"></textarea>
-                        <button type="submit" class="w-full bg-primary text-light py-3 rounded-lg
-                                hover:bg-opacity-90 transition-all duration-300"
-                                :disabled="loading">
-                            {{ loading ? 'Enviando...' : 'Enviar Mensagem' }}
-                        </button>
+                    <div>
+                        <input 
+                            v-model="form.email" 
+                            type="email" 
+                            placeholder="Email"
+                            :class="{'border-red-500': errors.email}"
+                            class="w-full p-2.5 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" 
+                        />
+                        <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
                     </div>
-                </form>
-            </div>
+
+                    <div>
+                        <textarea 
+                            v-model="form.message" 
+                            placeholder="Sua Mensagem (mínimo 10 caracteres)" 
+                            rows="3"
+                            :class="{'border-red-500': errors.message}"
+                            class="w-full p-2.5 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
+                        ></textarea>
+                        <p v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</p>
+                        <p class="text-sm text-gray-500 mt-1">{{ form.message.length }}/10 caracteres mínimos</p>
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        class="w-full bg-primary text-light py-2.5 rounded-lg hover:bg-opacity-90 transition-all duration-300 flex items-center justify-center"
+                        :disabled="loading"
+                    >
+                        <span v-if="loading" class="inline-block animate-spin mr-2">
+                            ⚪
+                        </span>
+                        {{ loading ? 'Enviando...' : 'Enviar Mensagem' }}
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 
     <!-- Modal -->
     <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mx-4">
-            <div class="flex items-center" :class="isSuccess ? 'text-green-600' : 'text-red-600'">
-                <span class="text-xl font-semibold">{{ modalMessage }}</span>
+        <div class="bg-white p-5 rounded-lg shadow-lg max-w-sm w-full mx-4">
+            <div class="flex items-center justify-center mb-4" :class="isSuccess ? 'text-green-600' : 'text-red-600'">
+                <span class="text-xl font-semibold text-center">{{ modalMessage }}</span>
             </div>
-            <button @click="showModal = false"
-                class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-blue-700 transition">
+            <button @click="closeModal"
+                class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-opacity-90 transition">
                 Fechar
             </button>
         </div>
@@ -67,26 +71,67 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { GithubIcon, LinkedinIcon, MailIcon, MapPinIcon } from 'lucide-vue-next'
+import { ref, reactive } from 'vue'
 import emailjs from '@emailjs/browser'
 
-const name = ref('')
-const email = ref('')
-const message = ref('')
+const form = reactive({
+    name: '',
+    email: '',
+    message: ''
+})
+
+const errors = reactive({
+    name: '',
+    email: '',
+    message: ''
+})
+
 const loading = ref(false)
 const showModal = ref(false)
 const modalMessage = ref('')
 const isSuccess = ref(true)
 
-const sendMessage = async () => {
+const validateForm = () => {
+    let isValid = true
+    errors.name = ''
+    errors.email = ''
+    errors.message = ''
+
+    if (!form.name.trim()) {
+        errors.name = 'Nome é obrigatório'
+        isValid = false
+    }
+
+    if (!form.email.trim()) {
+        errors.email = 'Email é obrigatório'
+        isValid = false
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+        errors.email = 'Email inválido'
+        isValid = false
+    }
+
+    if (!form.message.trim()) {
+        errors.message = 'Mensagem é obrigatória'
+        isValid = false
+    } else if (form.message.trim().length < 10) {
+        errors.message = 'Mensagem deve ter pelo menos 10 caracteres'
+        isValid = false
+    }
+
+    return isValid
+}
+
+const handleSubmit = async () => {
+    if (!validateForm()) return
+
     try {
         loading.value = true
 
         const templateParams = {
-            from_name: name.value,
-            from_email: email.value,
-            message: message.value,
+            from_name: form.name,
+            from_email: form.email,
+            message: form.message,
+            reply_to: form.email
         }
 
         await emailjs.send(
@@ -97,48 +142,29 @@ const sendMessage = async () => {
         )
 
         isSuccess.value = true
-        modalMessage.value = 'Mensagem enviada com sucesso!'
+        modalMessage.value = 'Mensagem enviada com sucesso! Retornarei o contato em breve.'
         showModal.value = true
-
-        // Limpa o formulário
-        name.value = ''
-        email.value = ''
-        message.value = ''
+        resetForm()
     } catch (error) {
         console.error('Erro ao enviar mensagem:', error)
         isSuccess.value = false
-        modalMessage.value = 'Erro ao enviar mensagem. Tente novamente.'
+        modalMessage.value = 'Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato por email.'
         showModal.value = true
     } finally {
         loading.value = false
     }
 }
+
+const resetForm = () => {
+    form.name = ''
+    form.email = ''
+    form.message = ''
+    errors.name = ''
+    errors.email = ''
+    errors.message = ''
+}
+
+const closeModal = () => {
+    showModal.value = false
+}
 </script>
-
-<style scoped>
-.social-card {
-/*     background: white;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-    transition: all 0.3s ease;
-}
-
-.social-card:hover {
-    transform: perspective(400px) rotateX(15deg) rotateY(-15deg) scale(1.2);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* .social-card:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
-
-#github,
-#linkedin,
-#mail {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-</style>

@@ -8,13 +8,13 @@
             <!-- Menu Desktop -->
             <div class="hidden md:flex space-x-6">
                 <a @click.prevent="scrollToSection('home')"
-                    class="hover:text-primary transition duration-300 cursor-pointer">Início</a>
+                    class="link-hover-effect cursor-pointer">Início</a>
                 <a @click.prevent="scrollToSection('about')"
-                    class="hover:text-primary transition duration-300 cursor-pointer">Sobre</a>
+                    class="link-hover-effect cursor-pointer">Sobre</a>
                 <a @click.prevent="scrollToSection('skills')"
-                    class="hover:text-primary transition duration-300 cursor-pointer">Skills</a>
+                    class="link-hover-effect cursor-pointer">Skills</a>
                 <a @click.prevent="scrollToSection('contact')"
-                    class="hover:text-primary transition duration-300 cursor-pointer">Contato</a>
+                    class="link-hover-effect cursor-pointer">Contato</a>
             </div>
             <!-- Botão Menu Mobile -->
             <button @click="toggleMenu" class="md:hidden bg-white duration-300">
@@ -153,5 +153,59 @@ nav {
 .fade-leave-from {
     opacity: 1;
     transform: rotate(0deg);
+}
+
+.link-hover-effect {
+    position: relative;
+    padding: 0.25rem 0;
+}
+
+/* Apenas aplica os efeitos hover em dispositivos não-touch */
+@media (hover: hover) {
+    .link-hover-effect::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(
+            to right,
+            var(--color-primary),
+            #4b9fff,
+            var(--color-primary)
+        );
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    .link-hover-effect:hover {
+        background: linear-gradient(
+            to right,
+            var(--color-primary),
+            #4b9fff
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: color 0.3s ease;
+    }
+
+    .link-hover-effect:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+}
+
+/* Remove todos os efeitos hover em dispositivos touch */
+@media (hover: none) {
+    .link-hover-effect {
+        transition: color 0.3s ease;
+    }
+    
+    .link-hover-effect:active {
+        color: var(--color-primary);
+    }
 }
 </style>
