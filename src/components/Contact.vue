@@ -1,41 +1,53 @@
 <template>
-    <section id="contact" class="flex items-center justify-center min-h-screen px-4">
-        <div class="w-full max-w-md">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">Contato</h2>
-            <form @submit.prevent="sendMessage" class="bg-white p-8 rounded-lg shadow-md">
-                <input v-model="name" type="text" placeholder="Nome" class="w-full mb-4 p-3 border rounded" required>
-                <input v-model="email" type="email" placeholder="Email" class="w-full mb-4 p-3 border rounded" required>
-                <textarea v-model="message" placeholder="Sua Mensagem" class="w-full mb-4 p-3 border rounded h-32"
-                    required></textarea>
-                <button type="submit"
-                    class="w-full bg-primary text-white py-3 rounded hover:bg-blue-700 transition disabled:opacity-70 disabled:cursor-not-allowed"
-                    :disabled="loading">
-                    <span v-if="loading" class="flex items-center justify-center">
-                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                            </circle>
-                            <path class="opacity-75" fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                            </path>
-                        </svg>
-                        Enviando...
-                    </span>
-                    <span v-else>Enviar</span>
-                </button>
-            </form>
+    <section id="contact" class="section-padding">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 heading-gradient">
+                Vamos Conversar?
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
+                <!-- Informações de Contato -->
+                <div class="bg-primary p-6 sm:p-8 rounded-lg text-light order-2 md:order-1">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6">Informações de Contato</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <MailIcon class="w-6 h-6" />
+                            <span>natanrodrigues649@gmail.com</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <MapPinIcon class="w-6 h-6" />
+                            <span>Mato Grosso do Sul, Brasil</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 sm:mt-8">
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/sntxs" target="_blank"
+                                class="bg-light/10 p-3 rounded-lg hover:bg-light/20 transition-colors">
+                                <GithubIcon class="w-5 h-5 sm:w-6 sm:h-6" />
+                            </a>
+                            <a href="https://www.linkedin.com/in/sntsrod00/" target="_blank"
+                                class="bg-light/10 p-3 rounded-lg hover:bg-light/20 transition-colors">
+                                <LinkedinIcon class="w-5 h-5 sm:w-6 sm:h-6" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="flex justify-center mt-8 space-x-6">
-                <a id="github" href="https://github.com/sntxs" target="_blank" class="social-card" title="Github">
-                    <GithubIcon class="w-9 h-9 text-dark hover:text-primary" />
-                </a>
-                <a id="linkedin" href="https://www.linkedin.com/in/sntsrod00/" target="_blank" class="social-card"
-                    title="Linkedin">
-                    <LinkedinIcon class="w-9 h-9 text-dark hover:text-primary" />
-                </a>
-                <a id="mail" href="mailto:natanrodrigues649@gmail.com" class="social-card" title="Email">
-                    <MailIcon class="w-9 h-9 text-dark hover:text-primary" />
-                </a>
+                <!-- Formulário -->
+                <form @submit.prevent="sendMessage" class="bg-white p-6 sm:p-8 rounded-lg shadow-sm order-1 md:order-2">
+                    <div class="space-y-4">
+                        <input v-model="name" type="text" placeholder="Nome"
+                            class="w-full p-3 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" />
+                        <input v-model="email" type="email" placeholder="Email"
+                            class="w-full p-3 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" />
+                        <textarea v-model="message" placeholder="Sua Mensagem" rows="4"
+                            class="w-full p-3 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"></textarea>
+                        <button type="submit" class="w-full bg-primary text-light py-3 rounded-lg
+                                hover:bg-opacity-90 transition-all duration-300"
+                                :disabled="loading">
+                            {{ loading ? 'Enviando...' : 'Enviar Mensagem' }}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -56,7 +68,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { GithubIcon, LinkedinIcon, MailIcon } from 'lucide-vue-next'
+import { GithubIcon, LinkedinIcon, MailIcon, MapPinIcon } from 'lucide-vue-next'
 import emailjs from '@emailjs/browser'
 
 const name = ref('')
@@ -105,10 +117,10 @@ const sendMessage = async () => {
 
 <style scoped>
 .social-card {
-    background: white;
+/*     background: white;
     padding: 1rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     transition: all 0.3s ease;
 }
 
@@ -117,10 +129,10 @@ const sendMessage = async () => {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.social-card:active {
+/* .social-card:active {
     transform: scale(0.95);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+} */
 
 #github,
 #linkedin,

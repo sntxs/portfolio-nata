@@ -1,14 +1,19 @@
 <template>
-    <section id="skills" class="flex items-center justify-center min-h-screen">
+    <section id="skills" class="section-padding">
         <div class="text-center">
-            <h2 class="text-3xl font-bold mb-8">Minhas Habilidades</h2>
-            <div id="cardSkills" class="grid grid-cols-3 gap-6">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 heading-gradient">
+                Minhas Habilidades
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto px-4">
                 <div v-for="skill in skills" :key="skill.name"
-                    class="bg-white p-6 rounded-lg shadow-md hover:scale-110 transition-all duration-300">
-                    <font-awesome-icon v-if="skill.useFA" :icon="skill.icon"
-                        class="mx-auto mb-4 w-12 h-12 text-primary" />
-                    <component v-else :is="skill.icon" class="mx-auto mb-4 w-12 h-12 text-primary" />
-                    <h3 class="text-xl font-semibold">{{ skill.name }}</h3>
+                    class="skill-card">
+                    <div class="relative z-10">
+                        <font-awesome-icon v-if="skill.useFA" :icon="skill.icon"
+                            class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-primary" />
+                        <component v-else :is="skill.icon" 
+                            class="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4" />
+                        <h3 class="text-lg sm:text-xl font-medium text-primary">{{ skill.name }}</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,11 +47,18 @@ const skills = [
 </script>
 
 <style scoped>
-@media (max-width: 768px) {
-    #cardSkills {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 0 1rem;
-    }
+.skill-card {
+    @apply bg-white p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md
+    transform hover:-translate-y-1 transition-all duration-300;
+}
+
+.skill-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 
+    opacity-0 transition-opacity duration-300;
+}
+
+.skill-card:hover::before {
+    @apply opacity-100;
 }
 </style>

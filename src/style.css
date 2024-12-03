@@ -7,3 +7,27 @@ body {
   scroll-behavior: smooth;
   font-family: "Raleway", sans-serif;
 }
+
+:root {
+  --color-primary: #2D3436;
+  --color-secondary: #636E72;
+  --color-accent: #B2BEC3;
+  --color-light: #DFE6E9;
+  --color-dark: #1E272E;
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+/* Estilos mobile-first */
+@layer components {
+  .container {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+
+  .heading-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text;
+  }
+}

@@ -1,6 +1,6 @@
 <template>
     <nav :class="{ '-translate-y-full': isHidden }"
-        class="fixed top-0 left-0 w-full bg-white shadow-md z-50 transition-transform duration-300">
+        class="fixed top-0 left-0 w-full backdrop-blur-md bg-white/80 z-50 transition-all duration-300">
         <div class="container mx-auto flex justify-between items-center py-4 px-6">
             <div class="text-xl font-bold text-dark">
                 <img src="../img/new-logo-nr.png" alt="Natã Rodrigues" class="w-16">
