@@ -10,10 +10,14 @@
                         <div class="icon-wrapper">
                             <font-awesome-icon v-if="skill.useFA" :icon="skill.icon"
                                 class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-primary group-hover:scale-110 transition-transform duration-300" />
-                            <component v-else :is="skill.icon" 
+                            <component v-else-if="!skill.isImage" :is="skill.icon"
                                 class="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300" />
+                            <img v-else :src="skill.icon" :alt="skill.name"
+                                class="w-8 h-8 sm:w-9 sm:h-9 mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                         </div>
-                        <h3 class="text-lg sm:text-xl font-medium text-primary group-hover:text-secondary transition-colors duration-300">
+
+                        <h3
+                            class="text-base sm:text-lg font-medium text-primary group-hover:text-secondary transition-colors duration-300">
                             {{ skill.name }}
                         </h3>
                     </div>
@@ -25,19 +29,7 @@
 
 <script setup>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {
-    faHtml5,
-    faCss3Alt,
-    faBootstrap,
-    faJs,
-    faVuejs,
-    faReact,
-} from '@fortawesome/free-brands-svg-icons'
-import {
-    Database,
-    CloudLightning,
-    Server
-} from 'lucide-vue-next'
+
 
 const skills = [
     { name: 'HTML5', icon: ['fab', 'html5'], useFA: true },
@@ -46,25 +38,34 @@ const skills = [
     { name: 'Vue.js', icon: ['fab', 'vuejs'], useFA: true },
     { name: 'React.js', icon: ['fab', 'react'], useFA: true },
     { name: 'Bootstrap', icon: ['fab', 'bootstrap'], useFA: true },
+    {
+        name: 'Tailwind CSS',
+        icon: new URL('../assets/tailwind.svg', import.meta.url).href,
+        useFA: false,
+        isImage: true
+    },
+    {
+        name: 'jQuery',
+        icon: new URL('../assets/jquery.svg', import.meta.url).href,
+        useFA: false,
+        isImage: true
+    },
 ]
 </script>
 
 <style scoped>
 .skill-card {
-    @apply bg-white p-6 sm:p-8 rounded-lg relative overflow-hidden transition-all duration-500
-    hover:shadow-lg hover:-translate-y-1;
+    @apply bg-white p-6 sm:p-8 rounded-lg relative overflow-hidden transition-all duration-500 hover:shadow-lg hover:-translate-y-1;
 }
 
 .skill-card::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 
-    opacity-0 transition-opacity duration-500;
+    @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 transition-opacity duration-500;
 }
 
 .skill-card::after {
     content: '';
-    @apply absolute -inset-2 bg-gradient-to-br from-primary/10 to-secondary/10
-    rounded-[100%] blur-2xl opacity-0 transition-all duration-500 scale-0;
+    @apply absolute -inset-2 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-[100%] blur-2xl opacity-0 transition-all duration-500 scale-0;
 }
 
 .skill-card:hover::before {
@@ -81,8 +82,7 @@ const skills = [
 
 .icon-wrapper::after {
     content: '';
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-    w-12 h-12 bg-primary/5 rounded-full scale-0 transition-transform duration-500;
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-primary/5 rounded-full scale-0 transition-transform duration-500;
 }
 
 .skill-card:hover .icon-wrapper::after {
@@ -90,9 +90,12 @@ const skills = [
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-5px);
     }

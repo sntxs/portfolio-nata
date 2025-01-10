@@ -51,12 +51,22 @@ const scrollToSection = (sectionId) => {
 </script>
 
 <style scoped>
-.social-icon {
-    @apply p-2 rounded-lg bg-light/10 hover:bg-light/20 transition-all duration-300 active:scale-95;
+@media (max-width: 768px) {
+    .social-icon {
+        @apply p-2 rounded-lg bg-light/10;
+    }
 }
 
-.social-icon:hover {
-    transform: perspective(250px) rotateX(15deg) rotateY(-15deg) scale(1.2);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+@media (min-width: 768px) {
+    .social-icon {
+        @apply p-2 rounded-lg bg-light/10 hover:bg-light/20 transition-all duration-300 active:scale-95;
+    }
+
+    .footer-section {
+        .social-icon:hover {
+            transform: perspective(250px) rotateX(15deg) rotateY(-15deg) scale(1.2);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+    }
 }
 </style>
