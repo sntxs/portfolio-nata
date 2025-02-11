@@ -1,25 +1,37 @@
 <template>
-    <section id="skills" class="section-padding">
+    <section id="skills" class="section-padding py-20 relative">
+        <!-- Elementos de fundo animados -->
+        <div class="absolute inset-0 overflow-visible">
+            <div class="floating-circle bg-primary/5 w-64 h-64 rounded-full absolute -top-20 -left-20"></div>
+            <div class="floating-circle-reverse bg-secondary/5 w-96 h-96 rounded-full absolute -bottom-32 -right-32"></div>
+        </div>
+
         <div class="text-center">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 heading-gradient">
                 Minhas Habilidades
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto px-4">
-                <div v-for="skill in skills" :key="skill.name" class="skill-card group">
-                    <div class="relative z-10 flex flex-col items-center">
-                        <div class="icon-wrapper">
-                            <font-awesome-icon v-if="skill.useFA" :icon="skill.icon"
-                                class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-primary group-hover:scale-110 transition-transform duration-300" />
-                            <component v-else-if="!skill.isImage" :is="skill.icon"
-                                class="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300" />
-                            <img v-else :src="skill.icon" :alt="skill.name"
-                                class="w-8 h-8 sm:w-9 sm:h-9 mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+            
+            <!-- Grade de habilidades com efeito de hover mais elaborado -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto px-4">
+                <div v-for="skill in skills" :key="skill.name" 
+                     class="skill-card group perspective">
+                    <div class="card-content">
+                        <div class="card-front">
+                            <div class="icon-wrapper">
+                                <font-awesome-icon v-if="skill.useFA" :icon="skill.icon"
+                                    class="text-3xl sm:text-4xl text-primary" />
+                                <component v-else-if="!skill.isImage" :is="skill.icon"
+                                    class="w-10 h-10 sm:w-12 sm:h-12" />
+                                <img v-else :src="skill.icon" :alt="skill.name"
+                                    class="w-8 h-8 sm:w-9 sm:h-9">
+                            </div>
+                            <h3 class="text-base sm:text-lg font-medium mt-3">
+                                {{ skill.name }}
+                            </h3>
                         </div>
-
-                        <h3
-                            class="text-base sm:text-lg font-medium text-primary group-hover:text-secondary transition-colors duration-300">
-                            {{ skill.name }}
-                        </h3>
+                        <div class="card-back">
+                            <p class="text-sm text-light">{{ getSkillDescription(skill.name) }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -29,7 +41,6 @@
 
 <script setup>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 
 const skills = [
     { name: 'HTML5', icon: ['fab', 'html5'], useFA: true },
@@ -51,57 +62,78 @@ const skills = [
         isImage: true
     },
 ]
+
+const experienceLevels = [
+    { name: 'Front-end Development', percentage: 90 },
+    { name: 'Vue.js', percentage: 85 },
+    { name: 'React.js', percentage: 75 },
+    { name: 'UI/UX Design', percentage: 70 },
+]
+
+const getSkillDescription = (skillName) => {
+    const descriptions = {
+        'HTML5': 'Estruturação semântica e acessível de conteúdo web',
+        'JavaScript': 'Desenvolvimento front-end e lógica de programação',
+        'CSS3': 'Estilização avançada e layouts responsivos',
+        'Vue.js': 'Desenvolvimento de aplicações SPA modernas',
+        'React.js': 'Criação de interfaces interativas e componentizadas',
+        'Bootstrap': 'Framework CSS para desenvolvimento rápido',
+        'Tailwind CSS': 'Utility-first CSS para designs customizados',
+        'jQuery': 'Manipulação DOM e compatibilidade cross-browser'
+    }
+    return descriptions[skillName] || 'Tecnologia web moderna'
+}
 </script>
 
 <style scoped>
 .skill-card {
-    @apply bg-white p-6 sm:p-8 rounded-lg relative overflow-hidden transition-all duration-500 hover:shadow-lg hover:-translate-y-1;
+    @apply bg-white p-6 rounded-xl relative overflow-hidden transition-all duration-500;
+    height: 180px;
 }
 
-.skill-card::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 transition-opacity duration-500;
+.perspective {
+    perspective: 1000px;
 }
 
-.skill-card::after {
-    content: '';
-    @apply absolute -inset-2 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-[100%] blur-2xl opacity-0 transition-all duration-500 scale-0;
+.card-content {
+    @apply w-full h-full relative transition-transform duration-500;
+    transform-style: preserve-3d;
 }
 
-.skill-card:hover::before {
-    @apply opacity-100;
+.skill-card:hover .card-content {
+    transform: rotateY(180deg);
 }
 
-.skill-card:hover::after {
-    @apply opacity-70 scale-150;
+.card-front, .card-back {
+    @apply absolute w-full h-full flex flex-col items-center justify-center backface-hidden;
+}
+
+.card-back {
+    @apply bg-primary p-4 rounded-xl;
+    transform: rotateY(180deg);
 }
 
 .icon-wrapper {
-    @apply relative;
+    @apply relative flex items-center justify-center w-16 h-16 rounded-full bg-primary/5
+    transition-transform duration-300;
 }
 
-.icon-wrapper::after {
-    content: '';
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-primary/5 rounded-full scale-0 transition-transform duration-500;
+.skill-card:hover .icon-wrapper {
+    transform: scale(1.1);
 }
 
-.skill-card:hover .icon-wrapper::after {
-    @apply scale-150;
+.backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 @keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 .skill-card:hover {
     animation: float 2s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 </style>

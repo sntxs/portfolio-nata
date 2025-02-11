@@ -1,78 +1,115 @@
 <template>
-    <section id="contact" class="section-padding">
-        <div class="max-w-lg mx-auto px-4">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 heading-gradient">
+    <section id="contact" class="section-padding py-20 relative">
+        <!-- Elementos de fundo animados -->
+        <div class="absolute inset-0 overflow-visible">
+            <div class="floating-circle bg-primary/5 w-64 h-64 rounded-full absolute -top-20 -left-20"></div>
+            <div class="floating-circle-reverse bg-secondary/5 w-96 h-96 rounded-full absolute -bottom-32 -right-32"></div>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4 relative z-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 heading-gradient">
                 Vamos Conversar?
             </h2>
             
-            <form @submit.prevent="handleSubmit" class="bg-white p-5 rounded-lg shadow-sm">
-                <div class="space-y-3">
-                    <div>
+            <!-- Cards de contato rápido -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div class="contact-card">
+                    <div class="icon-wrapper">
+                        <Mail class="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 class="font-semibold text-sm mb-1">Email</h3>
+                    <a href="mailto:natanrodrigues649@gmail.com" class="text-xs text-gray-600 hover:text-primary transition-colors">natanrodrigues649@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon-wrapper">
+                        <Linkedin class="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 class="font-semibold text-sm mb-1">LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/sntsrod00/" class="text-xs text-gray-600 hover:text-primary transition-colors">@sntsrod00</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon-wrapper">
+                        <Github class="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 class="font-semibold text-sm mb-1">GitHub</h3>
+                    <a href="https://github.com/sntxs" class="text-xs text-gray-600 hover:text-primary transition-colors">@sntxs</a>
+                </div>
+            </div>
+
+            <form @submit.prevent="handleSubmit" 
+                  class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="space-y-4">
+                    <div class="form-group">
+                        <label class="text-sm font-medium text-gray-700 mb-1 block">Nome</label>
                         <input 
                             v-model="form.name" 
                             type="text" 
-                            placeholder="Nome"
                             :class="{'border-red-500': errors.name}"
-                            class="w-full p-2.5 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" 
+                            class="form-input" 
+                            placeholder="Seu nome"
                         />
-                        <p v-if="errors.name" class="text-red-500 text-sm mt-1">{{ errors.name }}</p>
+                        <p v-if="errors.name" class="error-message">{{ errors.name }}</p>
                     </div>
 
-                    <div>
+                    <div class="form-group">
+                        <label class="text-sm font-medium text-gray-700 mb-1 block">Email</label>
                         <input 
                             v-model="form.email" 
                             type="email" 
-                            placeholder="Email"
                             :class="{'border-red-500': errors.email}"
-                            class="w-full p-2.5 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" 
+                            class="form-input" 
+                            placeholder="seu.email@exemplo.com"
                         />
-                        <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
+                        <p v-if="errors.email" class="error-message">{{ errors.email }}</p>
                     </div>
 
-                    <div>
+                    <div class="form-group">
+                        <label class="text-sm font-medium text-gray-700 mb-1 block">Mensagem</label>
                         <textarea 
                             v-model="form.message" 
-                            placeholder="Sua Mensagem (mínimo 10 caracteres)" 
                             rows="3"
                             :class="{'border-red-500': errors.message}"
-                            class="w-full p-2.5 border border-accent rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
+                            class="form-input"
+                            placeholder="Sua mensagem aqui..."
                         ></textarea>
-                        <p v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</p>
-                        <p class="text-sm text-gray-500 mt-1">{{ form.message.length }}/10 caracteres mínimos</p>
+                        <p v-if="errors.message" class="error-message">{{ errors.message }}</p>
+                        <p class="text-xs text-gray-500 mt-1">{{ form.message.length }}/10 caracteres mínimos</p>
                     </div>
 
                     <button 
                         type="submit" 
-                        class="w-full bg-primary text-light py-2.5 rounded-lg hover:bg-opacity-90 transition-all duration-300 flex items-center justify-center"
+                        class="submit-button"
                         :disabled="loading"
                     >
-                        <span v-if="loading" class="inline-block animate-spin mr-2">
-                            ⚪
-                        </span>
-                        {{ loading ? 'Enviando...' : 'Enviar Mensagem' }}
+                        <span v-if="loading" class="loading-spinner"></span>
+                        {{ loading ? 'Enviando...' : 'Enviar' }}
                     </button>
                 </div>
             </form>
         </div>
     </section>
 
-    <!-- Modal -->
-    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white p-5 rounded-lg shadow-lg max-w-sm w-full mx-4">
-            <div class="flex items-center justify-center mb-4" :class="isSuccess ? 'text-green-600' : 'text-red-600'">
-                <span class="text-xl font-semibold text-center">{{ modalMessage }}</span>
+    <!-- Modal de feedback -->
+    <Transition name="modal">
+        <div v-if="showModal" class="modal-overlay" @click="closeModal">
+            <div class="modal-content" @click.stop>
+                <div class="modal-icon" :class="isSuccess ? 'success' : 'error'">
+                    <Check v-if="isSuccess" class="w-5 h-5" />
+                    <X v-else class="w-5 h-5" />
+                </div>
+                <p class="modal-message">{{ modalMessage }}</p>
+                <button @click="closeModal" class="modal-button">
+                    Fechar
+                </button>
             </div>
-            <button @click="closeModal"
-                class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-opacity-90 transition">
-                Fechar
-            </button>
         </div>
-    </div>
+    </Transition>
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue'
 import emailjs from '@emailjs/browser'
+import { Mail, Linkedin, Github, Check, X } from 'lucide-vue-next'
 
 const form = reactive({
     name: '',
@@ -168,3 +205,73 @@ const closeModal = () => {
     showModal.value = false
 }
 </script>
+
+<style scoped>
+.contact-card {
+    @apply bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300
+    flex flex-col items-center text-center;
+}
+
+.icon-wrapper {
+    @apply w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-2;
+}
+
+.form-input {
+    @apply w-full p-2 text-sm border border-gray-300 rounded-lg focus:border-primary focus:ring-1 
+    focus:ring-primary/20 transition-all duration-300;
+}
+
+.error-message {
+    @apply text-red-500 text-xs mt-1;
+}
+
+.submit-button {
+    @apply w-full bg-primary text-white py-2 rounded-lg hover:bg-opacity-90 
+    transition-all duration-300 flex items-center justify-center space-x-2 text-sm
+    disabled:opacity-70 disabled:cursor-not-allowed;
+}
+
+.loading-spinner {
+    @apply w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4;
+}
+
+.modal-content {
+    @apply bg-white rounded-xl p-4 max-w-sm w-full text-center;
+}
+
+.modal-icon {
+    @apply w-10 h-10 rounded-full mx-auto mb-3 flex items-center justify-center;
+}
+
+.modal-icon.success {
+    @apply bg-green-100 text-green-600;
+}
+
+.modal-icon.error {
+    @apply bg-red-100 text-red-600;
+}
+
+.modal-message {
+    @apply text-gray-700 text-sm mb-4;
+}
+
+.modal-button {
+    @apply w-full bg-primary text-white py-2 rounded-lg hover:bg-opacity-90 transition-all text-sm;
+}
+
+/* Modal Transition */
+.modal-enter-active,
+.modal-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+    opacity: 0;
+}
+</style>
