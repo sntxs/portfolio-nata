@@ -13,6 +13,8 @@
                     class="link-hover-effect cursor-pointer">Sobre</a>
                 <a @click.prevent="scrollToSection('skills')"
                     class="link-hover-effect cursor-pointer">Skills</a>
+                <a @click.prevent="scrollToSection('projetos')"
+                    class="link-hover-effect cursor-pointer">Projetos</a>
                 <a @click.prevent="scrollToSection('contact')"
                     class="link-hover-effect cursor-pointer">Contato</a>
             </div>
@@ -32,6 +34,7 @@
                     <a @click="scrollToSectionMobile('home')" class="transition-colors duration-300 hover:text-primary">Início</a>
                     <a @click="scrollToSectionMobile('about')" class="transition-colors duration-300 hover:text-primary">Sobre</a>
                     <a @click="scrollToSectionMobile('skills')" class="transition-colors duration-300 hover:text-primary">Skills</a>
+                    <a @click="scrollToSectionMobile('projetos')" class="transition-colors duration-300 hover:text-primary">Projetos</a>
                     <a @click="scrollToSectionMobile('contact')" class="transition-colors duration-300 hover:text-primary">Contato</a>
                 </div>
             </div>
