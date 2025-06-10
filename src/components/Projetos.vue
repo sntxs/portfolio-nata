@@ -91,6 +91,13 @@ export default {
           link: "https://moon-communicaty.vercel.app/",
           imagem: new URL("../assets/moon.png", import.meta.url).href,
         },
+        {
+          titulo: "Casamento J & N",
+          descricao:
+            "Projeto de site de casamento com cadastro de lista de presentes e pagamento direto pelo site.",
+          link: "https://casamento-jn.vercel.app/",
+          imagem: new URL("../assets/casamento-jn.png", import.meta.url).href,
+        },
       ],
     };
   },
