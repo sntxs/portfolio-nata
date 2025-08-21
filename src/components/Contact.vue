@@ -18,7 +18,7 @@
                         <Mail class="w-5 h-5 text-primary" />
                     </div>
                     <h3 class="font-semibold text-sm mb-1">Email</h3>
-                    <a href="mailto:natanrodrigues649@gmail.com" class="text-xs text-gray-600 hover:text-primary transition-colors">natanrodrigues649@gmail.com</a>
+                    <a href="mailto:natarodrigues.dev@gmail.com" class="text-xs text-gray-600 hover:text-primary transition-colors">natarodrigues.dev@gmail.com</a>
                 </div>
                 <div class="contact-card">
                     <div class="icon-wrapper">
