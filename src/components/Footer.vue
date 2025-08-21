@@ -28,7 +28,7 @@
                 </div>
                 <div class="footer-section">
                     <h3 class="text-xl font-bold mb-4">Contato</h3>
-                    <p>natanrodrigues649@gmail.com</p>
+                    <p>natarodrigues.dev@gmail.com</p>
                     <p>Mato Grosso do Sul, Brasil</p>
                 </div>
             </div>
