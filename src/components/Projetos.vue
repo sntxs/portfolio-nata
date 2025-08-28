@@ -120,7 +120,7 @@ export default {
           titulo: "Barber System",
           descricao:
             "Projeto de um sistema de barbearia. Ainda está em produção, mas já possui algumas funcionalidades.",
-          link: "https://barber-system.vercel.app",
+          link: "https://barber-system-app.vercel.app",
           imagem: new URL("../assets/barber-system.jpg", import.meta.url).href,
         },
       ],

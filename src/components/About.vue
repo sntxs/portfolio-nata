@@ -7,12 +7,13 @@
         </div>
 
         <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
+            <div class="max-w-6xl mx-auto">
                 <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center heading-gradient">
                     Sobre Mim
                 </h2>
 
-                <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Seção principal -->
+                <div class="grid md:grid-cols-2 gap-12 items-start mb-12">
                     <div
                         class="about-card p-6 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300">
                         <div class="space-y-6">
@@ -20,11 +21,18 @@
                                 <div class="w-20 h-20 md:w-32 md:h-32 bg-primary/10 rounded-full flex items-center justify-center">
                                     <img src="../img/profile.jpeg" alt="Natã Rodrigues" class="w-20 h-20 md:w-32 md:h-32 rounded-full">
                                 </div>
-                                <h3 class="text-xl font-semibold">Quem sou eu</h3>
+                                <div>
+                                    <h3 class="text-xl font-semibold">Natã Rodrigues</h3>
+                                    <p class="text-gray-600">Desenvolvedor Web</p>
+                                </div>
                             </div>
-                            <p class="text-gray-700 leading-relaxed">
-                                Meu nome é Natã Rodrigues, tenho 24 anos e estou no meu ultimo semestre de Engenharia de Software.
-                            </p>
+                            <div class="space-y-4">
+                                <p class="text-gray-700 leading-relaxed">
+                                    Olá! Sou um desenvolvedor web apaixonado por criar interfaces interativas e responsivas 
+                                    que proporcionem uma experiência de usuário excepcional. Sou formado em Engenharia de Software 
+                                    pela Unigran (conclusão em 2025).
+                                </p>
+                            </div>
                         </div>
                     </div>
 
@@ -35,28 +43,67 @@
                                 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                                     <CodeIcon class="w-6 h-6 text-primary" />
                                 </div>
-                                <h3 class="text-xl font-semibold">Minha Jornada</h3>
+                                <h3 class="text-xl font-semibold">Objetivo Profissional</h3>
                             </div>
                             <p class="text-gray-700 leading-relaxed">
-                                Desenvolvedor Front-End com experiência prática em criação de interfaces interativas e
-                                responsivas. Busco colaborar com empresas inovadoras, contribuindo para o
-                                desenvolvimento de soluções web que proporcionem uma experiência de usuário de alta
-                                qualidade.
-
+                                Busco colaborar com empresas inovadoras, contribuindo para o desenvolvimento de soluções web 
+                                que proporcionem uma experiência de usuário de alta qualidade. Foco em aprendizado contínuo 
+                                e aplicação das mais recentes tecnologias e boas práticas de desenvolvimento.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                <!-- Seção de Formação e Experiência -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Formação Acadêmica -->
+                    <div class="about-card p-6 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <UserIcon class="w-6 h-6 text-primary" />
+                            </div>
+                            <h3 class="text-xl font-semibold">Formação Acadêmica</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-primary pl-4">
+                                <h4 class="font-semibold text-gray-800">Engenharia de Software</h4>
+                                <p class="text-gray-600 text-sm">Unigran - Concluído em Agosto de 2025</p>
+                            </div>
+                            <div class="border-l-4 border-secondary pl-4">
+                                <h4 class="font-semibold text-gray-800">Ensino Médio</h4>
+                                <p class="text-gray-600 text-sm">Escola Estadual José Maria Hugo Rodrigues - Concluído em 2017</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experiência Profissional -->
+                    <div class="about-card p-6 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <BriefcaseIcon class="w-6 h-6 text-primary" />
+                            </div>
+                            <h3 class="text-xl font-semibold">Experiência Profissional</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-primary pl-4">
+                                <h4 class="font-semibold text-gray-800">Desenvolvedor Web Júnior</h4>
+                                <p class="text-gray-600 text-sm">Unigran Capital - 12/2023 à atual</p>
+                                <p class="text-gray-700 text-sm mt-1">Vue.js, HTML, CSS, Bootstrap, jQuery, PHP</p>
+                            </div>
+                            <div class="border-l-4 border-secondary pl-4">
+                                <h4 class="font-semibold text-gray-800">Assistente de Informática</h4>
+                                <p class="text-gray-600 text-sm">Unigran Capital - 03/2021 a 11/2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estatísticas -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
                     <div class="stat-card p-6 rounded-xl bg-white shadow-lg hover:shadow-xl transition-all">
-                        <h4 class="text-3xl font-bold text-primary mb-2">1+</h4>
+                        <h4 class="text-3xl font-bold text-primary mb-2">1.10+</h4>
                         <p class="text-gray-600">Anos de Experiência</p>
                     </div>
-                    <!--                     <div class="stat-card p-6 rounded-xl bg-white shadow-lg hover:shadow-xl transition-all">
-                        <h4 class="text-3xl font-bold text-primary mb-2">5+</h4>
-                        <p class="text-gray-600">Projetos Concluídos</p>
-                    </div> -->
                     <div class="stat-card p-6 rounded-xl bg-white shadow-lg hover:shadow-xl transition-all">
                         <h4 class="text-3xl font-bold text-primary mb-2">10+</h4>
                         <p class="text-gray-600">Tecnologias</p>
@@ -72,7 +119,7 @@
 </template>
 
 <script setup>
-import { UserIcon, CodeIcon } from 'lucide-vue-next'
+import { UserIcon, CodeIcon, BriefcaseIcon } from 'lucide-vue-next'
 </script>
 
 <style scoped>

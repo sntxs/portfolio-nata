@@ -22,16 +22,14 @@
                 Transformando ideias em experiências digitais únicas através de código limpo e design intuitivo
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a @click.prevent="scrollToContact" href="#contact" 
-                   class="btn-primary group">
+                <button @click="scrollToContact" class="btn-primary group bg-primary/10 text-black font-bold px-8 py-4 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center shadow-lg hover:shadow-xl">
                     Entre em Contato
                     <span class="group-hover:translate-x-1 transition-transform inline-block ml-2">→</span>
-                </a>
-                <a href="https://github.com/sntxs?tab=repositories" target="_blank"
-                   class="btn-secondary group">
+                </button>
+                <button @click="scrollToProjects" class="btn-secondary group bg-primary/10 text-black font-bold px-8 py-4 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center shadow-lg hover:shadow-xl">
                     Meus projetos
                     <span class="group-hover:translate-x-1 transition-transform inline-block ml-2">→</span>
-                </a>
+                </button>
             </div>
         </div>
     </section>
@@ -42,19 +40,13 @@ const scrollToContact = () => {
     const contactSection = document.getElementById('contact')
     contactSection.scrollIntoView({ behavior: 'smooth' })
 }
+
+const scrollToProjects = () => {
+    window.open('https://github.com/sntxs', '_blank')
+}
 </script>
 
 <style scoped>
-.btn-primary {
-    @apply px-8 py-4 bg-primary text-light rounded-lg hover:bg-opacity-90 transition-all duration-300 text-center 
-    shadow-lg hover:shadow-xl;
-}
-
-.btn-secondary {
-    @apply px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary/10 
-    transition-all duration-300 text-center shadow-lg hover:shadow-xl;
-}
-
 .floating-circle {
     animation: float 15s infinite ease-in-out;
 }
