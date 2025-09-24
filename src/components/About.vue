@@ -30,7 +30,7 @@
                                 <p class="text-gray-700 leading-relaxed">
                                     Olá! Sou um desenvolvedor web apaixonado por criar interfaces interativas e responsivas 
                                     que proporcionem uma experiência de usuário excepcional. Sou formado em Engenharia de Software 
-                                    pela Unigran (conclusão em 2025).
+                                    pela Unigran (Concluído em Agosto de 2025).
                                 </p>
                             </div>
                         </div>
