@@ -23,11 +23,15 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <button @click="scrollToContact" class="btn-primary group bg-primary/10 text-black font-bold px-8 py-4 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center shadow-lg hover:shadow-xl">
-                    Entre em Contato
+                    Contato
                     <span class="group-hover:translate-x-1 transition-transform inline-block ml-2">→</span>
                 </button>
                 <button @click="scrollToProjects" class="btn-secondary group bg-primary/10 text-black font-bold px-8 py-4 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center shadow-lg hover:shadow-xl">
-                    Meus projetos
+                    Projetos
+                    <span class="group-hover:translate-x-1 transition-transform inline-block ml-2">→</span>
+                </button>
+                <button @click="scrollToLinkedin" class="btn-primary group bg-primary/10 text-black font-bold px-8 py-4 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center shadow-lg hover:shadow-xl">
+                    LinkedIn
                     <span class="group-hover:translate-x-1 transition-transform inline-block ml-2">→</span>
                 </button>
             </div>
@@ -43,6 +47,9 @@ const scrollToContact = () => {
 
 const scrollToProjects = () => {
     window.open('https://github.com/sntxs', '_blank')
+}
+const scrollToLinkedin = () => {
+    window.open('https://www.linkedin.com/in/sntsrod00/', '_blank')
 }
 </script>
 

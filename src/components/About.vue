@@ -19,7 +19,7 @@
                         <div class="space-y-6">
                             <div class="flex items-center space-x-4 mb-6">
                                 <div class="w-20 h-20 md:w-32 md:h-32 bg-primary/10 rounded-full flex items-center justify-center">
-                                    <img src="../img/profile.jpeg" alt="Natã Rodrigues" class="w-20 h-20 md:w-32 md:h-32 rounded-full">
+                                    <img src="https://www.devmates.com.br/assets/img-nata-84kRO5y5.jpg" alt="Natã Rodrigues" class="w-20 h-20 md:w-32 md:h-32 rounded-full">
                                 </div>
                                 <div>
                                     <h3 class="text-xl font-semibold">Natã Rodrigues</h3>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="space-y-4">
                             <div class="border-l-4 border-primary pl-4">
-                                <h4 class="font-semibold text-gray-800">Desenvolvedor Web Júnior</h4>
+                                <h4 class="font-semibold text-gray-800">Desenvolvedor Web</h4>
                                 <p class="text-gray-600 text-sm">Unigran Capital - 12/2023 à atual</p>
                                 <p class="text-gray-700 text-sm mt-1">Vue.js, HTML, CSS, Bootstrap, jQuery, PHP</p>
                             </div>
